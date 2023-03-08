@@ -1,7 +1,7 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const mailchimp = require("@mailchimp/mailchimp_marketing");
-const port = 3000;
+const port = process.env.PORT || 3000;
 
 const app = express();
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -43,7 +43,7 @@ app.post("/", (req, res) => {
   res.sendFile(__dirname + "/success.html");
 });
 
-app.listen(process.env.PORT || 3000, () => {
+app.listen(port, () => {
   console.log(`Server is listening on port ${port}`);
 });
 
