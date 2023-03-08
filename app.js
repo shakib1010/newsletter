@@ -7,7 +7,7 @@ const app = express();
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static("public"));
 mailchimp.setConfig({
-  apiKey: "de56da1236b41cea8af6a2063be81943-us18",
+  apiKey: "9a3987ed417662d4969ef3088faeca89-us18",
   server: "us18",
 });
 
