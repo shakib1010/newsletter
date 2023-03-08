@@ -7,7 +7,7 @@ const app = express();
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static("public"));
 mailchimp.setConfig({
-  apiKey: "8b7e203504a6ee02e820af6591dbc54b-us18",
+  apiKey: "de56da1236b41cea8af6a2063be81943-us18",
   server: "us18",
 });
 
@@ -23,8 +23,8 @@ app.post("/", (req, res) => {
     email: req.body.email,
   };
 
-  async function subscribe() {
-    try {
+  try {
+    async function subscribe() {
       const response = await mailchimp.lists.addListMember(listId, {
         email_address: subscribingUser.email,
         status: "subscribed",
@@ -33,12 +33,11 @@ app.post("/", (req, res) => {
           LNAME: subscribingUser.lastName,
         },
       });
-    } catch (error) {
-      res.sendFile(__dirname + "/failure.html");
     }
+    subscribe();
+  } catch (error) {
+    res.sendFile(__dirname + "/failure.html");
   }
-
-  subscribe();
 
   res.sendFile(__dirname + "/success.html");
 });
